@@ -8,3 +8,7 @@
 fn main() {
     call_me();
 }
+// Définition de la fonction `call_me`
+fn call_me() {
+    println!("You called me!");
+}
