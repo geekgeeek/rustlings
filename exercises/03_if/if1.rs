@@ -6,6 +6,12 @@
 
 pub fn bigger(a: i32, b: i32) -> i32 {
     // Complete this function to return the bigger number!
+    if a > b
+    {
+        a             //implementation de la fonction bigger
+    } else {
+        b
+    }
     // If both numbers are equal, any of them can be returned.
     // Do not use:
     // - another function call
