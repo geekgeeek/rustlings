@@ -86,3 +86,16 @@ mod tests {
         assert_eq!(package.get_fees(cents_per_gram * 2), 9000);
     }
 }
+
+//structs1.rs : Pour faire passer les tests dans cet exercice, il faut définir correctement les structs et les instances des structs dans les tests.
+
+
+//structs2.rs : L'erreur dans le code réside dans le fait que l'instance your_order n'est pas créée.
+//Pour corriger cela, il faut utiliser la syntaxe de mise à jour des structures 
+//(struct update syntax) pour créer your_order en utilisant order_template comme modèle.
+
+//structs3.rs : 
+//L'erreur dans ce code réside dans les signatures de méthodes manquantes et dans l'implémentation des fonctions is_international et get_fees. 
+//Ces méthodes doivent retourner des valeurs appropriées et correctes selon leur logique respective.
+//Méthode is_international : La méthode vérifie si le pays de l'expéditeur est différent de celui du destinataire et retourne true
+//si c'est le cas (indiquant que le colis est international), sinon false
