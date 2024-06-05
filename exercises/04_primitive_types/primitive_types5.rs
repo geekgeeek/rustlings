@@ -9,7 +9,7 @@
 
 fn main() {
     let cat = ("Furry McFurson", 3.5);
-    let /* your pattern here */ = cat;
+   let (name, age) = cat; // Déstructure le tuple
 
     println!("{} is {} years old.", name, age);
 }
