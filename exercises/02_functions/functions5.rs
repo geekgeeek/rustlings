@@ -13,3 +13,12 @@ fn main() {
 fn square(num: i32) -> i32 {
     num * num
 }
+
+
+//Corection des erreurs
+
+//functions1.rs
+//functions2.rs
+//functions3.rs
+//functions4.rs
+//functions5.rs
