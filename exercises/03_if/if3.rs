@@ -54,3 +54,20 @@ mod tests {
         assert_eq!(animal_habitat("dinosaur"), "Unknown")
     }
 }
+
+
+
+//if1.rs : L'erreur est que la fonction bigger n'est pas implémentée. 
+//Il faut compléter cette fonction  (utuliser la structure if-else) pour qu'elle retourne le plus grand des deux nombres fournis
+
+//if2.rs : les erreurs sur ce code sont : la fonction foo_if_fizz doit retourner une chaîne de caractères (&str).
+//Cependant, dans la branche else, elle retourne 1, qui est un entier (i32).
+//La fonction foo_if_fizz doit retourner "bar" pour l'entrée "fuzz" et "baz". pour toutes les autres entrées. Actuellement, ces cas ne sont pas gérés
+//Pour résoudre ces problèmes, nous avons : Corriger les types de retour pour qu'ils soient tous &str.
+// et Ajouter des branches else if pour gérer les différents cas.
+
+//if3.rs : l'erreur vient du fait que le variable "identifier"est censé avoir un type unique,
+//mais à plusieur type (i32, f64, &str), pour corriger cela on peut utiliser un seul type 
+//pour identifier. Le type le plus approprié serait un entier (i32).
+
+
