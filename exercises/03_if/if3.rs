@@ -8,11 +8,11 @@ pub fn animal_habitat(animal: &str) -> &'static str {
     let identifier = if animal == "crab" {
         1
     } else if animal == "gopher" {
-        2.0
+        2                     // nous allons utiliser un seul type : i32
     } else if animal == "snake" {
         3
     } else {
-        "Unknown"
+        0                     // nous allons utiliser un seul type : i32
     };
 
     // DO NOT CHANGE THIS STATEMENT BELOW
