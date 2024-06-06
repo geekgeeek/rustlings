@@ -8,23 +8,25 @@
 // I AM NOT DONE
 
 fn main() {
-    let data = "Rust is great!".to_string();
+    let mut data = "Rust is great!".to_string(); // Changement en mutable
 
-    get_char(data);
+    let last_char = get_char(&data); // Passer une référence immuable
+    println!("Last character: {}", last_char);
 
-    string_uppercase(&mut data.clone());
+    string_uppercase(&mut data); // Passer une référence mutable
+
+    println!("Uppercase string: {}", data);
 }
 
-// Should not take ownership
-fn get_char(data: String) -> char {
+// Ne prend pas possession, utilise une référence immuable
+fn get_char(data: &String) -> char {
     data.chars().last().unwrap()
 }
 
-// Should take ownership
+// Prend une référence mutable pour modifier la chaîne
 fn string_uppercase(data: &mut String) {
-   *data = data.to_uppercase();
-
-    println!("{}", data);
+    *data = data.to_uppercase();
+    println!("Uppercase inside function: {}", data);
 }
 
 /* move_semantics1.rs : L'erreur dans le code est que la fonction fill_vec prend le vecteur vec en tant que paramètre mutabl, ce qui signifie qu'elle en prend possession (ownership) et peut donc le modifier. Cependant, après avoir pris possession du vecteur, elle essaie d'en créer 
