@@ -19,11 +19,11 @@ mod tests {
 
     #[test]
     fn is_true_when_even() {
-        assert!();
+        assert!(is_even(4));  // 4 est un nombre pair, donc is_even(4) devrait renvoyer true
     }
 
     #[test]
     fn is_false_when_odd() {
-        assert!();
+        assert!(!is_even(5));  // 5 est un nombre impair, donc is_even(5) devrait renvoyer false
     }
 }
