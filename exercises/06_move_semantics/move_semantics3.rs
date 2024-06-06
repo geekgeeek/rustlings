@@ -12,12 +12,13 @@
 fn main() {
     let vec0 = vec![22, 44, 66];
 
+    // Transfert de la propriété de vec0 à fill_vec
     let vec1 = fill_vec(vec0);
 
     assert_eq!(vec1, vec![22, 44, 66, 88]);
 }
 
-fn fill_vec(vec: &mut Vec<i32>) -> Vec<i32> {
+fn fill_vec(mut vec: Vec<i32>) -> Vec<i32> {
     vec.push(88);
 
     vec
