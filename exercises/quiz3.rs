@@ -23,8 +23,22 @@ pub struct ReportCard {
     pub student_name: String,
     pub student_age: u8,
 }
+pub trait Grade {
+    fn grade_str(&self) -> String;
+}
+impl Grade for f32 {
+    fn grade_str(&self) -> String {
+        self.to_string()
+    }
+}
 
-impl ReportCard {
+impl Grade for &'static str {
+    fn grade_str(&self) -> String {
+        self.to_string()
+    }
+}
+
+impl<T: Grade> ReportCard<T> {
     pub fn print(&self) -> String {
         format!("{} ({}) - achieved a grade of {}",
             &self.student_name, &self.student_age, &self.grade)
@@ -52,7 +66,7 @@ mod tests {
     fn generate_alphabetic_report_card() {
         // TODO: Make sure to change the grade here after you finish the exercise.
         let report_card = ReportCard {
-            grade: 2.1,
+            grade: "A+",
             student_name: "Gary Plotter".to_string(),
             student_age: 11,
         };
