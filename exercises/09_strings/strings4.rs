@@ -38,7 +38,7 @@ et non &str. Il faut donc convertir le littéral de chaîne "blue" en String*/
 tandis que dans main, la variable word est de type String.
 Le type String doit être converti en &str pour que cela fonctionne.*/
 
-Pour résoudre ce problème, il suffit de passer une référence de la chaîne de caractères String à la fonction is_a_color_word.
+//Pour résoudre ce problème, il suffit de passer une référence de la chaîne de caractères String à la fonction is_a_color_word.
 /* strings3.rs : Le code ci-dessus contient trois fonctions incomplètes trim_me,
 compose_me et replace_me qui doivent manipuler des chaînes de caractères.
 trim_me : Cette fonction doit enlever les espaces blancs au début et à la fin d'une chaîne.
