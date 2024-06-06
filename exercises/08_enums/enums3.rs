@@ -8,7 +8,10 @@
 // I AM NOT DONE
 
 enum Message {
-    // TODO: implement the message variant types based on their usage below
+    ChangeColor(u8, u8, u8),
+    Echo(String),
+    Move(Point),
+    Quit,      // TODO: implement the message variant types based on their usage below
 }
 
 struct Point {
@@ -44,6 +47,12 @@ impl State {
         // TODO: create a match expression to process the different message variants
         // Remember: When passing a tuple as a function argument, you'll need extra parentheses:
         // fn function((t, u, p, l, e))
+         match message {
+            Message::ChangeColor(r, g, b) => self.change_color((r, g, b)),
+            Message::Echo(s) => self.echo(s),
+            Message::Move(p) => self.move_position(p),
+            Message::Quit => self.quit(),
+        }
     }
 }
 
@@ -71,3 +80,14 @@ mod tests {
         assert_eq!(state.message, "Hello world!");
     }
 }
+
+// enums1.rs : l'énumération Message n'est pas encore définie correctement, ce qui empêche le code de compiler.
+//Pour corriger ce code, nous devons définir les variantes de l'énumération Message telles que Quit, Echo, Move, et ChangeColor.
+
+// enums2.rs : les variantes de l'énumération Message ne sont pas encore définies. 
+//Il faut les définir en fonction de leur utilisation dans le tableau messages
+
+// enums3.rs : L'erreur dans le code réside dans le fait que l'énumération Message n'est pas encore définie avec les variantes appropriées 
+//et que la méthode process n'implémente pas la logique pour traiter ces variantes. 
+//Pour corriger cela, nous devons : Définir les variantes de l'énumération Message basées sur leur utilisation dans la méthode process
+//Implémenter la méthode process avec une expression match pour traiter chaque variante de message
