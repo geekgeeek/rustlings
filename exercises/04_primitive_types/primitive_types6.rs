@@ -11,11 +11,14 @@
 #[test]
 fn indexing_tuple() {
     let numbers = (1, 2, 3);
-    // Replace below ??? with the tuple indexing syntax.
+    // Indexation correcte du tuple
     let second = numbers.1;
 
-    assert_eq!(2, second,
-        "This is not the 2nd number in the tuple!")
+    assert_eq!(2, second, "This is not the 2nd number in the tuple!");
+}
+
+fn main() {
+    indexing_tuple();
 }
 
 //primitive_types1.rs:L'erreur dans le code provient de la ligne incomplète où is_evening devrait être initialisé.
