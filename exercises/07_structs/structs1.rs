@@ -8,10 +8,9 @@
 // I AM NOT DONE
 
 struct ColorClassicStruct {
-     red: u8,
+    red: u8,
     green: u8,
     blue: u8,
-    
 }
 
 struct ColorTupleStruct(u8, u8, u8);
@@ -25,13 +24,12 @@ mod tests {
 
     #[test]
     fn classic_c_structs() {
-        // TODO: Instantiate a classic c struct!
-        
+        // Instanciation d'une struct classique (Classic C struct)
         let green = ColorClassicStruct {
             red: 0,
             green: 255,
             blue: 0,
-        }
+        }; // Point-virgule ajouté ici
 
         assert_eq!(green.red, 0);
         assert_eq!(green.green, 255);
@@ -40,7 +38,7 @@ mod tests {
 
     #[test]
     fn tuple_structs() {
-        // TODO: Instantiate a tuple struct!
+        // Instanciation d'une struct tuple (Tuple struct)
         let green = ColorTupleStruct(0, 255, 0);
 
         assert_eq!(green.0, 0);
@@ -50,10 +48,11 @@ mod tests {
 
     #[test]
     fn unit_structs() {
-        // TODO: Instantiate a unit-like struct!
-         let unit_like_struct = UnitLikeStruct;
+        // Instanciation d'une struct unit-like (Unit-like struct)
+        let unit_like_struct = UnitLikeStruct;
         let message = format!("{:?}s are fun!", unit_like_struct);
 
         assert_eq!(message, "UnitLikeStructs are fun!");
     }
 }
+
