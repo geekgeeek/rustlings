@@ -36,6 +36,5 @@ mod tests {
 
 /* generics1.rs : Le code est un programme simple qui essaie de créer une liste de courses (shopping_list) et d'y ajouter un élément ("milk"). Cependant, le type du vecteur (Vec) n'est pas spécifié, 
     ce qui empêche la compilation. Dans ce cas, nous ajoutons une chaîne de caractères (&str) à la liste, donc le type du vecteur doit être &str. */
-    /* generics2.rs : 
-Le code actuel définit une structure Wrapper qui ne peut contenir qu'un entier non signé de 32 bits (u32). 
+    /* generics2.rs : Le code actuel définit une structure Wrapper qui ne peut contenir qu'un entier non signé de 32 bits (u32). 
 La tâche consiste à réécrire cette structure en utilisant des génériques afin qu'elle puisse contenir n'importe quel type. */
