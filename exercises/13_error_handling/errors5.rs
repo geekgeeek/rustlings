@@ -29,7 +29,7 @@ use std::fmt;
 use std::num::ParseIntError;
 
 // TODO: update the return type of `main()` to make this compile.
-fn main() -> Result<(), Box<dyn ???>> {
+fn main() -> Result<(), Box<dyn Error>> {
     let pretend_user_input = "42";
     let x: i64 = pretend_user_input.parse()?;
     println!("output={:?}", PositiveNonzeroInteger::new(x)?);
@@ -68,4 +68,18 @@ impl fmt::Display for CreationError {
     }
 }
 
-impl error::Error for CreationError {}
+impl error::Error for CreationError {
+    fn description(&self) -> &str {
+        match *self {
+            CreationError::Negative => "number is negative",
+            CreationError::Zero => "number is zero",
+        }
+    }
+}
+
+
+impl From<ParseIntError> for CreationError {
+    fn from(_: ParseIntError) -> Self {
+        CreationError::Negative
+    }
+}
