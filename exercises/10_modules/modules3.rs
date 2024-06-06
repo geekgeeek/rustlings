@@ -19,3 +19,18 @@ fn main() {
         Err(_) => panic!("SystemTime before UNIX EPOCH!"),
     }
 }
+
+/* modules1.rs : L'erreur ici est due à la visibilité des fonctions dans le module sausage_factory. 
+Par défaut, les éléments (fonctions, structs, etc.) dans un module sont privés. 
+Pour permettre à la fonction make_sausage d'être appelée depuis l'extérieur du module,
+nous devons la rendre publique en utilisant le mot-clé pub.*/
+
+/* modules2.rs :Les erreurs proviennent de la mauvaise utilisation de la syntaxe use et as.
+Voici les corrections nécessaires : Importation correcte avec use et as :
+Utiliser le mot-clé as pour donner un nouveau nom aux constantes importées.
+Définir les imports comme publics : Assurez-vous que les imports sont publics
+pour qu'ils soient accessibles dans main. */
+
+/* modules3.rs: 
+Le code essaie d'utiliser SystemTime et UNIX_EPOCH du module std::time. Pour que le code compile correctement, 
+il faut importer SystemTime et UNIX_EPOCH à partir de std::time en utilisant l'instruction use. */
