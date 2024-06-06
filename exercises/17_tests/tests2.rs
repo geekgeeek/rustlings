@@ -12,6 +12,13 @@
 mod tests {
     #[test]
     fn you_can_assert_eq() {
-        assert_eq!();
+        assert_eq!(2 + 2, 4);  // Ceci fera que le test passe
+    }
+}
+
+mod tests {
+    #[test]
+    fn you_can_assert_eq() {
+        assert_eq!(2 + 2, 5);  // Ceci fera que le test échoue
     }
 }
