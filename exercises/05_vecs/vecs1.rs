@@ -10,8 +10,8 @@
 // I AM NOT DONE
 
 fn array_and_vec() -> ([i32; 4], Vec<i32>) {
-    let a = [10, 20, 30, 40]; // a plain array
-   let v = vec![10, 20, 30, 40]; // initializing the vector with the same elements
+    let a = [10, 20, 30, 40]; // Un tableau simple
+    let v = vec![10, 20, 30, 40]; // Initialisation du vecteur avec les mêmes éléments
 
     (a, v)
 }
@@ -23,6 +23,8 @@ mod tests {
     #[test]
     fn test_array_and_vec_similarity() {
         let (a, v) = array_and_vec();
-        assert_eq!(a, v[..]);
+        // Compare la tranche du vecteur avec la tranche du tableau
+        assert_eq!(&a[..], &v[..]); 
     }
 }
+
