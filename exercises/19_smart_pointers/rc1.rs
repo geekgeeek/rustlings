@@ -35,7 +35,6 @@ impl Planet {
     }
 }
 
-#[test]
 fn main() {
     let sun = Rc::new(Sun {});
     println!("reference count = {}", Rc::strong_count(&sun)); // 1 reference
@@ -60,19 +59,17 @@ fn main() {
     println!("reference count = {}", Rc::strong_count(&sun)); // 6 references
     jupiter.details();
 
-    // TODO
-   // Remplacer les trois dernières lignes de la fonction main() par ceci :
-let saturn = Planet::Saturn(Rc::clone(&sun));
-println!("reference count = {}", Rc::strong_count(&sun)); // 7 references
-saturn.details();
+    let saturn = Planet::Saturn(Rc::clone(&sun));
+    println!("reference count = {}", Rc::strong_count(&sun)); // 7 references
+    saturn.details();
 
-let uranus = Planet::Uranus(Rc::clone(&sun));
-println!("reference count = {}", Rc::strong_count(&sun)); // 8 references
-uranus.details();
+    let uranus = Planet::Uranus(Rc::clone(&sun));
+    println!("reference count = {}", Rc::strong_count(&sun)); // 8 references
+    uranus.details();
 
-let neptune = Planet::Neptune(Rc::clone(&sun));
-println!("reference count = {}", Rc::strong_count(&sun)); // 9 references
-neptune.details();
+    let neptune = Planet::Neptune(Rc::clone(&sun));
+    println!("reference count = {}", Rc::strong_count(&sun)); // 9 references
+    neptune.details();
 
     assert_eq!(Rc::strong_count(&sun), 9);
 
@@ -91,14 +88,73 @@ neptune.details();
     drop(mars);
     println!("reference count = {}", Rc::strong_count(&sun)); // 4 references
 
-    // TODO
+    drop(earth);
     println!("reference count = {}", Rc::strong_count(&sun)); // 3 references
 
-    // TODO
+    drop(venus);
     println!("reference count = {}", Rc::strong_count(&sun)); // 2 references
 
-    // TODO
+    drop(mercury);
     println!("reference count = {}", Rc::strong_count(&sun)); // 1 reference
 
     assert_eq!(Rc::strong_count(&sun), 1);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_reference_count() {
+        let sun = Rc::new(Sun {});
+        assert_eq!(Rc::strong_count(&sun), 1);
+
+        let mercury = Planet::Mercury(Rc::clone(&sun));
+        assert_eq!(Rc::strong_count(&sun), 2);
+
+        let venus = Planet::Venus(Rc::clone(&sun));
+        assert_eq!(Rc::strong_count(&sun), 3);
+
+        let earth = Planet::Earth(Rc::clone(&sun));
+        assert_eq!(Rc::strong_count(&sun), 4);
+
+        let mars = Planet::Mars(Rc::clone(&sun));
+        assert_eq!(Rc::strong_count(&sun), 5);
+
+        let jupiter = Planet::Jupiter(Rc::clone(&sun));
+        assert_eq!(Rc::strong_count(&sun), 6);
+
+        let saturn = Planet::Saturn(Rc::clone(&sun));
+        assert_eq!(Rc::strong_count(&sun), 7);
+
+        let uranus = Planet::Uranus(Rc::clone(&sun));
+        assert_eq!(Rc::strong_count(&sun), 8);
+
+        let neptune = Planet::Neptune(Rc::clone(&sun));
+        assert_eq!(Rc::strong_count(&sun), 9);
+
+        drop(neptune);
+        assert_eq!(Rc::strong_count(&sun), 8);
+
+        drop(uranus);
+        assert_eq!(Rc::strong_count(&sun), 7);
+
+        drop(saturn);
+        assert_eq!(Rc::strong_count(&sun), 6);
+
+        drop(jupiter);
+        assert_eq!(Rc::strong_count(&sun), 5);
+
+        drop(mars);
+        assert_eq!(Rc::strong_count(&sun), 4);
+
+        drop(earth);
+        assert_eq!(Rc::strong_count(&sun), 3);
+
+        drop(venus);
+        assert_eq!(Rc::strong_count(&sun), 2);
+
+        drop(mercury);
+        assert_eq!(Rc::strong_count(&sun), 1);
+    }
 }
