@@ -78,7 +78,7 @@ Pour corriger cela, vous devez utiliser un mécanisme de synchronisation tel que
 pour garantir que les threads accèdent à jobs_completed de manière sûre et sans aucune course.*/
 
 /* threads3.rs :Dans ce code, nous avons un problème de propriété (ownership) lorsque nous passons la structure Queue à la fonction send_tx. 
-La fonction send_tx reçoit la structure Queue par valeur (q: Queue), Pour résoudre ce problème, nous devons modifier la signature de la fonction send_tx pour qu'elle accepte une référence à Queue plutôt qu'une valeur./
+//La fonction send_tx reçoit la structure Queue par valeur (q: Queue), Pour résoudre ce problème, nous devons modifier la signature de la fonction send_tx pour qu'elle accepte une référence à Queue plutôt qu'une valeur./
 
 
 
