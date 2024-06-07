@@ -9,7 +9,7 @@
 
 // I AM NOT DONE
 
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
 
@@ -18,27 +18,27 @@ struct JobStatus {
 }
 
 fn main() {
-    // TODO: `Arc` isn't enough if you want a **mutable** shared state
-   let status = Arc::new(Mutex::new(JobStatus { jobs_completed: 0 }));
+    // Crée un Arc de Mutex pour une utilisation partagée et mutable de l'état.
+    let status = Arc::new(Mutex::new(JobStatus { jobs_completed: 0 }));
 
     let mut handles = vec![];
     for _ in 0..10 {
         let status_shared = Arc::clone(&status);
         let handle = thread::spawn(move || {
             thread::sleep(Duration::from_millis(250));
-            // TODO: You must take an action before you update a shared value
-            let mut status = status_shared.lock().unwrap();let mut status = status_shared.lock().unwrap();
-            status_shared.jobs_completed += 1;
+            // Verrouille le mutex avant de modifier la valeur partagée
+            let mut status = status_shared.lock().unwrap();
+            status.jobs_completed += 1;
         });
         handles.push(handle);
     }
 
-    // Waiting for all jobs to complete
+    // Attend que tous les travaux soient terminés
     for handle in handles {
         handle.join().unwrap();
     }
 
-    // TODO: Print the value of `JobStatus.jobs_completed`
-    let status = status.lock().unwrap()
-    println!("Jobs completed: {}", ???);
+    // Imprime la valeur de `JobStatus.jobs_completed`
+    let status = status.lock().unwrap();
+    println!("Jobs completed: {}", status.jobs_completed);
 }
