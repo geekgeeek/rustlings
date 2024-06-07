@@ -24,11 +24,11 @@
 
 // I AM NOT DONE
 
-use std::error;
+use std::error::Error;
 use std::fmt;
 use std::num::ParseIntError;
 
-// TODO: update the return type of `main()` to make this compile.
+// Mettre à jour le type de retour de `main` pour qu'il compile correctement.
 fn main() -> Result<(), Box<dyn Error>> {
     let pretend_user_input = "42";
     let x: i64 = pretend_user_input.parse()?;
@@ -36,7 +36,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-// Don't change anything below this line.
+// Ne rien changer en dessous de cette ligne.
 
 #[derive(PartialEq, Debug)]
 struct PositiveNonzeroInteger(u64);
@@ -57,7 +57,7 @@ impl PositiveNonzeroInteger {
     }
 }
 
-// This is required so that `CreationError` can implement `error::Error`.
+// Implémentation de `fmt::Display` pour `CreationError`.
 impl fmt::Display for CreationError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let description = match *self {
@@ -68,7 +68,8 @@ impl fmt::Display for CreationError {
     }
 }
 
-impl error::Error for CreationError {
+// Implémentation de `Error` pour `CreationError`.
+impl Error for CreationError {
     fn description(&self) -> &str {
         match *self {
             CreationError::Negative => "number is negative",
@@ -77,9 +78,11 @@ impl error::Error for CreationError {
     }
 }
 
-
+// Implémentation de `From<ParseIntError>` pour `CreationError`.
 impl From<ParseIntError> for CreationError {
     fn from(_: ParseIntError) -> Self {
+        // Il n'est pas logique de convertir une erreur de parsing en `CreationError::Negative`.
+        // Vous pouvez adapter cela en fonction de votre logique de traitement d'erreur.
         CreationError::Negative
     }
 }
