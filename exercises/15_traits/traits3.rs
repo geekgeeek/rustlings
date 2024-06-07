@@ -13,6 +13,7 @@
 pub trait Licensed {
     fn licensing_info(&self) -> String {
         String::from("Some information")
+    }
 }
 
 struct SomeSoftware {
@@ -23,8 +24,8 @@ struct OtherSoftware {
     version_number: String,
 }
 
-impl Licensed for SomeSoftware {} // Don't edit this line
-impl Licensed for OtherSoftware {} // Don't edit this line
+impl Licensed for SomeSoftware {} // Ne pas éditer cette ligne
+impl Licensed for OtherSoftware {} // Ne pas éditer cette ligne
 
 #[cfg(test)]
 mod tests {
