@@ -9,35 +9,45 @@
 
 // I AM NOT DONE
 
-pub trait SomeTrait {
-    fn some_function(&self) -> bool {
-        true
+pub trait Licensed {
+    fn licensing_info(&self) -> String {
+        "some information".to_string()
     }
 }
 
-pub trait OtherTrait {
-    fn other_function(&self) -> bool {
-        true
-    }
-}
+struct SomeSoftware {}
 
-struct SomeStruct {}
-struct OtherStruct {}
+struct OtherSoftware {}
 
-impl SomeTrait for SomeStruct {}
-impl OtherTrait for SomeStruct {}
-impl SomeTrait for OtherStruct {}
-impl OtherTrait for OtherStruct {}
+impl Licensed for SomeSoftware {}
+impl Licensed for OtherSoftware {}
 
 // YOU MAY ONLY CHANGE THE NEXT LINE
-fn some_func(item: &(impl SomeTrait + OtherTrait)) -> bool {
-    item.some_function() && item.other_function()
+fn compare_license_types(software: &impl Licensed, software_two: &impl Licensed) -> bool {
+    software.licensing_info() == software_two.licensing_info()
 }
 
-fn main() {
-    some_func(SomeStruct {});
-    some_func(OtherStruct {});
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn compare_license_information() {
+        let some_software = SomeSoftware {};
+        let other_software = OtherSoftware {};
+
+        assert!(compare_license_types(&some_software, &other_software));
+    }
+
+    #[test]
+    fn compare_license_information_backwards() {
+        let some_software = SomeSoftware {};
+        let other_software = OtherSoftware {};
+
+        assert!(compare_license_types(&other_software, &some_software));
+    }
 }
+
 
 /* traits1.rs : L'implémentation du trait AppendBar pour le type String est manquante.
 Pour corriger cela, il faut implémenter la fonction append_bar de manière à ce qu'elle ajoute "Bar" à la fin d'une chaîne de caractères String. */
