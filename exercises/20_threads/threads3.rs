@@ -6,7 +6,6 @@
 // I AM NOT DONE
 
 use std::sync::mpsc;
-use std::sync::Arc;
 use std::thread;
 use std::time::Duration;
 
@@ -23,32 +22,32 @@ impl Queue {
             first_half: vec![1, 2, 3, 4, 5],
             second_half: vec![6, 7, 8, 9, 10],
         }
-
-        //
     }
 }
 
-fn send_tx(q: Queue, tx: mpsc::Sender<u32>) -> () {
+fn send_tx(q: Queue, tx: mpsc::Sender<u32>) {
     let q1 = q.first_half.clone();
-    let q2 = q.second_half.clone()
+    let q2 = q.second_half.clone();
+    
+    let tx1 = tx.clone();
     thread::spawn(move || {
-        for val in  q1 {
+        for val in q1 {
             println!("sending {:?}", val);
-            tx.send(val).unwrap();
+            tx1.send(val).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });
 
+    let tx2 = tx.clone();
     thread::spawn(move || {
-        for val in q.second_half {
+        for val in q2 {
             println!("sending {:?}", val);
-            tx.send(val).unwrap();
+            tx2.send(val).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });
 }
 
-#[test]
 fn main() {
     let (tx, rx) = mpsc::channel();
     let queue = Queue::new();
@@ -60,11 +59,15 @@ fn main() {
     for received in rx {
         println!("Got: {}", received);
         total_received += 1;
+        if total_received == queue_length {
+            break;
+        }
     }
 
     println!("total numbers received: {}", total_received);
-    assert_eq!(total_received, queue_length)
+    assert_eq!(total_received, queue_length);
 }
+
 
 /* threads1.rs L'erreur se trouve dans la boucle for où les résultats sont collectés dans le vecteur results. 
 Pour corriger cela, vous pouvez utiliser la méthode join pour récupérer les valeurs renvoyées par chaque thread.*/
