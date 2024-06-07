@@ -9,14 +9,16 @@
 // I AM NOT DONE
 
 #[cfg(test)]
-mod tests {
+#[cfg(test)]
+mod first_tests {
     #[test]
     fn you_can_assert_eq() {
         assert_eq!(2 + 2, 4);  // Ceci fera que le test passe
     }
 }
 
-mod tests {
+#[cfg(test)]
+mod second_tests {
     #[test]
     fn you_can_assert_eq() {
         assert_eq!(2 + 2, 5);  // Ceci fera que le test échoue
