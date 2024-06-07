@@ -12,15 +12,25 @@
 // I AM NOT DONE
 
 #[test]
-fn main() {
-    let my_fav_fruits = vec!["banana", "custard apple", "avocado", "peach", "raspberry"];
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn test_favorite_fruits() {
+        let my_fav_fruits = vec![
+            "banana".to_string(),
+            "custard apple".to_string(),
+            "avocado".to_string(),
+            "peach".to_string(),
+            "raspberry".to_string(),
+        ];
 
-    let mut my_iterable_fav_fruits = my_fav_fruits.into_iter();   // TODO: Step 1
+        let mut my_iterable_fav_fruits = my_fav_fruits.into_iter(); // TODO: Step 1
 
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&"banana"));
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&"custard apple"));     // TODO: Step 2
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&"avocado"));
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&"peach"));     // TODO: Step 3
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&"raspberry"));
-    assert_eq!(my_iterable_fav_fruits.next(),  None);     // TODO: Step 4
+        assert_eq!(my_iterable_fav_fruits.next(), Some("banana".to_string()));
+        assert_eq!(my_iterable_fav_fruits.next(), Some("custard apple".to_string())); // TODO: Step 2
+        assert_eq!(my_iterable_fav_fruits.next(), Some("avocado".to_string()));
+        assert_eq!(my_iterable_fav_fruits.next(), Some("peach".to_string())); // TODO: Step 3
+        assert_eq!(my_iterable_fav_fruits.next(), Some("raspberry".to_string()));
+        assert_eq!(my_iterable_fav_fruits.next(), None); // TODO: Step 4
+    }
 }
