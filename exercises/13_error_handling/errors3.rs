@@ -17,15 +17,15 @@ fn main() {
 
     match total_cost(pretend_user_input) {
         Ok(cost) => {
-
-    if cost > tokens {
-        println!("You can't afford that many!");
-    } else {
-        tokens -= cost;
-        println!("You now have {} tokens.", tokens);
-    }
+            if cost > tokens {
+                println!("You can't afford that many!");
+            } else {
+                tokens -= cost;
+                println!("You now have {} tokens.", tokens);
+            }
         }
         Err(err) => println!("Error: {}", err),
+    }
 }
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
